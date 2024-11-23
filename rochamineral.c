@@ -31,7 +31,7 @@ void set_Identificador(mineral* milist,int Identificador){
 void set_peso(mineral* milist, float peso){
     (*milist).peso = peso;
 }
-void set_latitute(mineral* milist, float latitude){
+void set_latitude(mineral* milist, float latitude){
     (*milist).latitude = latitude;
 }
 void set_longitude(mineral* milist, float longitude){
