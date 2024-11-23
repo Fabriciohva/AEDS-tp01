@@ -4,7 +4,7 @@
 #include <string.h>
 
 void Inicializa_Sonda(Sonda_Espacial *sonda, int Identificador, Mponto* compartimento, float latitude,float longitude){
-         set_Identificador(sonda, Identificador);
+         set_IdentificadorSonda(sonda, Identificador);
          set_latitude(sonda,latitude);
          set_longitude(sonda,longitude);
          Desliga(sonda);
@@ -44,11 +44,11 @@ void Move(Sonda_Espacial *sonda,FILE *arquivo){
     fgets(linha, sizeof(linha), arquivo);
     sscanf(linha, "%f %f", &latitude, &longitude);
 
-    set_latitude(sonda,latitude);
-    set_longitude(sonda,longitude);
+    set_latitudeSonda(sonda,latitude);
+    set_longitudeSonda(sonda,longitude);
 }
 void imprime_Sonda(Sonda_Espacial *sonda){
-    printf("[Sonda: %s\n", sonda->Identificador);
+    printf("[Sonda: %d\n", sonda->Identificador);
     printf(" Localizacao(Latidude,Longitude): (%f,%f)\n", sonda->latitude, sonda->longitude);
     printf(" Esta ligada?: %s\n", sonda->EstaLigada);
     imprimec(&sonda->compartimento);
