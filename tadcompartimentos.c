@@ -12,14 +12,14 @@ int covaziac(Lrochas* lista){
     return(lista->primeiro == lista->ultimo);
 }
 int inserec(Lrochas* lista,mineral *px, float maxpeso){ //maxpeso o usuario escolhe
-    aponta atual = lista->primeiro;  //começa a busca
+    aponta atual = lista->primeiro;  //comeÃ§a a busca
     while (atual != NULL){
-        if(atual->compartimento==px){ //se ele ja tiver, não adiciona
+        if(atual->compartimento==px){ //se ele ja tiver, nÃ£o adiciona
             return 0;
         }
         atual = atual->prox;
     }
-    if(px->peso>maxpeso){ //se ja tiver no max, não procede
+    if(px->peso>maxpeso){ //se ja tiver no max, nÃ£o procede
         return 0;
     }
     lista->ultimo->prox = (aponta)malloc(sizeof(Mponto)); //aqui adiciona na lista
@@ -29,18 +29,34 @@ int inserec(Lrochas* lista,mineral *px, float maxpeso){ //maxpeso o usuario esco
     lista->tamanho++;
     return 1;
 }
-int retirac(Lrochas* lista,mineral *px){
-    Mponto* aux;
-    if(covaziac(lista)){
+int retirac(Lrochas* lista, char* categoria) {
+    if (covaziac(lista)) {
         return 0;
-    }else{
-        px = lista->primeiro->prox->compartimento;
-        aux = lista->primeiro;
-        lista->primeiro = lista->primeiro->prox;
-        free(aux);
-        lista->tamanho--;
-        return 1;
     }
+    aponta atual = lista->primeiro;
+    aponta anterior = NULL;
+    while (atual != NULL) {
+        if (strcmp(atual->compartimento->categoria, categoria) == 0) {
+            if (anterior == NULL) {
+                lista->primeiro = atual->prox;
+                if (lista->primeiro == NULL) {
+                    lista->ultimo = NULL;
+                }
+            } else {
+                anterior->prox = atual->prox;
+                if (atual->prox == NULL) {
+                    lista->ultimo = anterior;
+                }
+            }
+            free(atual);
+            lista->tamanho--;
+            atual = (anterior == NULL) ? lista->primeiro : anterior->prox; // atualiza 'atual' apÃ³s remoÃ§Ã£o
+        } else {
+            anterior = atual;
+            atual = atual->prox;
+        }
+    }
+    return 0;
 }
 void imprimec(Lrochas* lista){
     if(covaziac(lista)){
@@ -49,7 +65,7 @@ void imprimec(Lrochas* lista){
         aponta aux;
         aux = lista->primeiro->prox;
         while(aux != NULL){
-            printf("%d\n", aux->compartimento->Identificador); //não sei se é o identificador mesmo
+            printf("%d\n", aux->compartimento->Identificador); //nÃ£o sei se Ã© o identificador mesmo
             aux = aux->prox;
         }
         return 1;
@@ -60,7 +76,7 @@ int tamanhoc(Lrochas* lista){
 }
 float pesoc(Lrochas* lista){
     float total=0;
-    aponta atual = lista->primeiro; //começa com o primeiro
+    aponta atual = lista->primeiro; //comeÃ§a com o primeiro
     while(atual != NULL){
         total+=atual->compartimento->peso; //diferente de null, soma.
         atual=atual->prox;

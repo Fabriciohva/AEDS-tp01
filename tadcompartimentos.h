@@ -17,8 +17,8 @@ typedef struct{
 
 void vaziac(Lrochas* lista);
 int covaziac(Lrochas* lista);
-int inserc(Lrochas* lista, mineral *px, float maxpeso); //n„o pode ter rochas repetidas com peso maior que a capacidade
-int retirac(Lrochas* lista,mineral *px); //pela categoria
+int inserc(Lrochas* lista, mineral *px, float maxpeso); //n√£o pode ter rochas repetidas com peso maior que a capacidade
+int retirac(Lrochas* lista, char* categoria); //pela categoria
 void imprimec(Lrochas* lista); //indicar quando tiver vazia
 int tamanhoc(Lrochas* lista);//numero atual de rochas
 float pesoc(Lrochas* lista); //peso do compartimento
