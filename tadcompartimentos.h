@@ -5,7 +5,7 @@
 
 typedef struct ponto* aponta;
 typedef struct ponto{
-    mineral *compartimento;
+    mineral compartimento;
     struct ponto* prox;
 } Mponto;
 
