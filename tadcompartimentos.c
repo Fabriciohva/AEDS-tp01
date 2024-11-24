@@ -58,14 +58,15 @@ int retirac(Lrochas* lista, char* categoria) {
     }
     return 0;
 }
-void imprimec(Lrochas* lista){
+int imprimec(Lrochas* lista){
     if(covaziac(lista)){
+        printf("Compartimento vazio");
         return 0;
     }else{
         aponta aux;
         aux = lista->primeiro->prox;
         while(aux != NULL){
-            printf("%d\n", aux->compartimento->Identificador); //não sei se é o identificador mesmo
+            printf("%d\n", aux->compartimento.Identificador); //não sei se é o identificador mesmo
             aux = aux->prox;
         }
         return 1;
