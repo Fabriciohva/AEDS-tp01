@@ -66,7 +66,7 @@ int imprimec(Lrochas* lista){
         aponta aux;
         aux = lista->primeiro->prox;
         while(aux != NULL){
-            printf("%d\n", aux->compartimento.Identificador); //não sei se é o identificador mesmo
+            printf("%d\n", aux->compartimento->Identificador); //não sei se é o identificador mesmo
             aux = aux->prox;
         }
         return 1;
